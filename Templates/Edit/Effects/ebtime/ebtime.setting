@@ -1,0 +1,45 @@
+{
+ Tools = ordered() {
+  ebtime = MacroOperator {
+   Inputs = ordered() {
+    MainInput1 = InstanceInput { SourceOp = "EBTime_Flow", Source = "Input" },
+    OpenEditor = InstanceInput { SourceOp = "EBTime_Retime", Source = "OpenEditor" },
+    Interpolation = InstanceInput { SourceOp = "EBTime_Retime", Source = "InterpolateBetweenFrames", Name = "Interpolation", Default = 2 },
+    Clamp = InstanceInput { SourceOp = "EBTime_Retime", Source = "ClampEdges", Name = "Clamp source edges", Default = 1 }
+   },
+   Outputs = { MainOutput1 = InstanceOutput { SourceOp = "EBTime_Retime", Source = "Output" } },
+   ViewInfo = GroupInfo { Pos = { 0, 0 } },
+   Tools = ordered() {
+    EBTime_Flow = Dimension.OpticalFlow {
+     Inputs = {
+      Method = Input { Value = FuID { "Advanced" } },
+      ["Advanced.Advanced"] = Input { Value = 1 },
+      ["Advanced.NumWarps"] = Input { Value = 6 },
+      ["Advanced.NumIters"] = Input { Value = 11 }
+     },
+     ViewInfo = OperatorInfo { Pos = { 0, 0 } }
+    },
+    EBTime_Retime = TimeStretcher {
+     Inputs = {
+      Input = Input { SourceOp = "EBTime_Flow", Source = "Output" },
+      SourceTime = Input { Expression = "time" },
+      InterpolateBetweenFrames = Input { Value = 2 },
+      ClampEdges = Input { Value = 1 },
+      ["EnableWarp.PrevBackward"] = Input { Value = 1 },
+      ["EnableWarp.NextBackward"] = Input { Value = 1 }
+     },
+     UserControls = ordered() {
+      OpenEditor = {
+       LINKS_Name = "Open Editor", LINKID_DataType = "Number",
+       INPID_InputControl = "ButtonControl", INP_External = false,
+       INP_Passive = true, ICD_Width = 1,
+       BTNCS_Execute = "local p = comp:MapPath('Scripts:Comp/ebtime Editor.lua'); local f = io.open(p, 'r'); if f then f:close(); comp:RunScript(p) else print('ebtime: install Scripts/Comp/ebtime Editor.lua first, then restart Resolve.') end"
+      }
+     },
+     ViewInfo = OperatorInfo { Pos = { 160, 0 } }
+    }
+   }
+  }
+ },
+ ActiveTool = "ebtime"
+}
