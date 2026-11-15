@@ -1,10 +1,27 @@
-ebtime 0.1.0 preview validation
+ebtime 0.2.0 preview — validation
 
-PASS: Lua editor and setting syntax parsing.
-PASS: setting node structure and SourceTime default.
-PASS: all 25 presets under mocked Fusion/UIManager APIs.
-PASS: exact normal, reverse, 50% slow and freeze frame mappings over frames 100–200.
-PASS: finite output frames for every preset.
-PASS: installer copies, repeat-install backups, paths with spaces and apostrophes, installed button Lua syntax.
+PASS: 18 automated unittest checks, including real Qt widgets in offscreen mode.
+- All 28 preset models: valid handles, finite frame keys, expected endpoints.
+- Exact normal / reverse / 50% / freeze mappings over frames 100–200.
+- Bezier splitting preserves the curve; repeated random point/handle moves stay valid.
+- Invalid frame ranges, unordered handles and malformed import data rejected.
+- Actual Qt mouse drag, point insertion/deletion and handle editing.
+- Undo/Redo, playback/source/interpolation settings Undo, search and categories.
+- Speed graph read-only behavior; apply response and cancellation.
+- Small-window layout: no graph/control overlap; Apply remains visible.
+- Installer file placement, repeat-install backups and paths with spaces/apostrophes.
 
-NOT TESTED: actual DaVinci Resolve/Fusion UI, macro discovery, button execution, native optical-flow rendering, Edit-page or adjustment-clip behavior.
+PASS: Python compilation; Lua template, launcher and generated apply script syntax.
+PASS: Generated Lua executed against a mocked Fusion API: successful frame application,
+      plus injected spline failure to verify composition unlock and Undo cleanup.
+PASS: Rendered and visually inspected actual Qt UI screenshots at 1220×820 and
+      1000×690, with normal and expanded Advanced controls.
+
+Environment: Python 3.12, PySide6 / Qt 6, Linux offscreen rendering.
+
+NOT VERIFIED: Windows installation/runtime execution; DaVinci Resolve internal Python
+configuration; macro discovery; Open Editor execution; optical-flow rendering;
+Free/Studio edition behavior; Edit page or adjustment-clip behavior.
+
+These checks do not certify in-Resolve compatibility. Test on a copy of a short clip
+first. Use the Fusion Python script entry if the effect button cannot launch it.

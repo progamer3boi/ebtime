@@ -33,7 +33,7 @@
        LINKS_Name = "Open Editor", LINKID_DataType = "Number",
        INPID_InputControl = "ButtonControl", INP_External = false,
        INP_Passive = true, ICD_Width = 1,
-       BTNCS_Execute = "local p = comp:MapPath('Scripts:Comp/ebtime Editor.lua'); local f = io.open(p, 'r'); if f then f:close(); comp:RunScript(p) else print('ebtime: install Scripts/Comp/ebtime Editor.lua first, then restart Resolve.') end"
+       BTNCS_Execute = "local p = comp:MapPath('Scripts:Comp/ebtime Editor.py'); local f = io.open(p, 'r'); if f then f:close(); comp:RunScript(p) else print('ebtime: run Install Windows.cmd first, then restart Resolve.') end"
       }
      },
      ViewInfo = OperatorInfo { Pos = { 160, 0 } }
