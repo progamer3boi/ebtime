@@ -1,0 +1,10 @@
+ebtime 0.1.0 preview validation
+
+PASS: Lua editor and setting syntax parsing.
+PASS: setting node structure and SourceTime default.
+PASS: all 25 presets under mocked Fusion/UIManager APIs.
+PASS: exact normal, reverse, 50% slow and freeze frame mappings over frames 100–200.
+PASS: finite output frames for every preset.
+PASS: installer copies, repeat-install backups, paths with spaces and apostrophes, installed button Lua syntax.
+
+NOT TESTED: actual DaVinci Resolve/Fusion UI, macro discovery, button execution, native optical-flow rendering, Edit-page or adjustment-clip behavior.
